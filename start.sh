@@ -2,6 +2,6 @@
 
 cd /bedrock
 
-echo "eula=true" > eula.txt
+echo "Starting Minecraft Bedrock Dedicated Server..."
 
 ./bedrock_server
