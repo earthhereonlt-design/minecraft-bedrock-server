@@ -6,9 +6,10 @@ RUN apt-get update && \
 
 WORKDIR /bedrock
 
-RUN curl -L "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.26.45.1.zip" \
+RUN curl --http1.1 -fL --retry 5 --retry-delay 3 \
+    "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.26.45.1.zip" \
     -o server.zip && \
-    unzip server.zip && \
+    unzip -q server.zip && \
     rm server.zip
 
 COPY start.sh /start.sh
