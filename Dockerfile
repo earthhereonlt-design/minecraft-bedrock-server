@@ -1,15 +1,13 @@
 FROM ubuntu:22.04
 
 RUN apt-get update && \
-    apt-get install -y curl unzip ca-certificates && \
+    apt-get install -y curl unzip ca-certificates jq && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /bedrock
 
-RUN curl -L "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.94.1.zip" \
-    -o server.zip && \
-    unzip server.zip && \
-    rm server.zip
+RUN curl -fsSL https://www.minecraft.net/en-us/download/server/bedrock \
+    -o /tmp/page.html
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
